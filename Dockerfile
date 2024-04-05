@@ -32,9 +32,9 @@ RUN python3.10 -m pip install pip==${PIP_VERSION} \
 USER ${NB_USER}
 
 FROM python-deps as model-deps
-RUN python3.10 -c "import nltk; nltk.download('punkt')" && \
-  python3.10 -c "import nltk; nltk.download('averaged_perceptron_tagger')" && \
-  python3.10 -c "from unstructured.partition.model_init import initialize; initialize()"
+RUN python3.9 -c "import nltk; nltk.download('punkt')" && \
+  python3.9 -c "import nltk; nltk.download('averaged_perceptron_tagger')" && \
+  python3.9 -c "from unstructured.partition.model_init import initialize; initialize()"
 
 FROM model-deps as code
 COPY --chown=${NB_USER}:${NB_USER} CHANGELOG.md CHANGELOG.md
